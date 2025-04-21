@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Login to your Z account">
-	<title>Login - Z</title>
+	<meta name="description" content="Login to your QuizUp account">
+	<title>Login - QuizUp</title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,15 +17,34 @@
 	<link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-	<header class = "site-header">
-		<h1>QuizUp</h1>
-
-		<div class="language-selector">
-			<i class="fas fa-globe"></i> <!-- Globe Icon -->
-		</div>
-	</header>
-	<!-- <main class="auth-container">
-		<h1 class="heading-primary">Login or sign up</h1>
-	</main> -->
+    <header class="site-header">
+        <h1>QuizUp</h1>
+        <div class="language-selector">
+            <i class="fas fa-globe"></i>
+        </div>
+    </header>
+    <main class="auth-container">
+        <div class="auth-panel">
+            <h1 class="heading-primary">Sign in</h1>
+            <form class="login-form">
+                <div class="input-group">
+                    <label for="email">Email or phone number</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <a href="#" class="forgot-password">Forgot your password?</a>
+                </div>
+                <button type="submit" class="button-primary">Sign in</button>
+            </form>
+            <div class="separator">
+                <span>or</span>
+            </div>
+            <button class="button-secondary">Continue with Google</button>
+            <p class="signup-link">New to Z? <a href="#">Create an account</a></p>
+        </div>
+    </main>
 </body>
+</html>
 </html>
