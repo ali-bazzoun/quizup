@@ -2,7 +2,6 @@ const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('signup-form');
 const toggleToSignup = document.getElementById('toggle-to-signup');
 const toggleToSignin = document.getElementById('toggle-to-signin');
-const authTitle = document.getElementById('auth-title');
 const signinToggleText = document.getElementById('signin-toggle');
 const signupToggleText = document.getElementById('signup-toggle');
 
@@ -11,7 +10,6 @@ toggleToSignup.addEventListener('click', (e) => {
   loginForm.classList.add('hidden');
   signupForm.classList.remove('hidden');
   authTitle.textContent = 'Sign up';
-  document.title = 'Sign up - QuizUp';
   signinToggleText.classList.add('hidden');
   signupToggleText.classList.remove('hidden');
 });
@@ -21,7 +19,6 @@ toggleToSignin.addEventListener('click', (e) => {
   signupForm.classList.add('hidden');
   loginForm.classList.remove('hidden');
   authTitle.textContent = 'Sign in';
-  document.title = 'Sign in - QuizUp';
   signupToggleText.classList.add('hidden');
   signinToggleText.classList.remove('hidden');
 });
