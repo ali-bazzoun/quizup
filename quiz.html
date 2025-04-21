@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Take the quiz and test your knowledge!">
+  <title>Quiz - QuizUp</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">QuizUp</h1>
+      <nav class="header-actions">
+        <button class="language-btn" aria-label="Change Language">
+          <i class="fas fa-globe"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main class="quiz-container">
+    <section class="quiz-header">
+      <h1 id="quiz-title" class="quiz-title">Quiz Title</h1>
+      <p id="quiz-description" class="quiz-description">Test your knowledge with this quiz!</p>
+    </section>
+    <section id="quiz-content" class="quiz-content">
+      <!-- Questions will be dynamically loaded here -->
+    </section>
+    <section class="quiz-footer">
+      <button id="submit-quiz" class="button-primary">Submit Quiz</button>
+      <div id="quiz-score" class="quiz-score hidden">
+        <!-- Score will be displayed here -->
+      </div>
+    </section>
+  </main>
+  <script src="js/scripts.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

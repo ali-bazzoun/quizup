@@ -1,0 +1,72 @@
+[
+	{
+	  "id": 1,
+	  "title": "General Knowledge",
+	  "description": "Test your general knowledge skills.",
+	  "image": "images/general.png",
+	  "questions": [
+		{
+		  "question": "What is the capital of France?",
+		  "options": ["Paris", "Berlin", "Madrid"],
+		  "answer": "Paris"
+		},
+		{
+		  "question": "Which planet is known as the Red Planet?",
+		  "options": ["Mars", "Venus", "Jupiter"],
+		  "answer": "Mars"
+		},
+		{
+		  "question": "Who wrote 'Hamlet'?",
+		  "options": ["Shakespeare", "Tolstoy", "Homer"],
+		  "answer": "Shakespeare"
+		}
+	  ]
+	},
+	{
+	  "id": 2,
+	  "title": "Science & Nature",
+	  "description": "Explore fascinating science facts.",
+	  "image": "images/science.png",
+	  "questions": [
+		{
+		  "question": "What is H2O?",
+		  "options": ["Water", "Oxygen", "Hydrogen"],
+		  "answer": "Water"
+		},
+		{
+		  "question": "What gas do plants breathe in?",
+		  "options": ["Oxygen", "Carbon Dioxide", "Nitrogen"],
+		  "answer": "Carbon Dioxide"
+		},
+		{
+		  "question": "What organ pumps blood?",
+		  "options": ["Lungs", "Heart", "Kidneys"],
+		  "answer": "Heart"
+		}
+	  ]
+	},
+	{
+	  "id": 3,
+	  "title": "History Challenge",
+	  "description": "Dive into world history.",
+	  "image": "images/history.png",
+	  "questions": [
+		{
+		  "question": "Who was the first President of the United States?",
+		  "options": ["George Washington", "Abraham Lincoln", "Thomas Jefferson"],
+		  "answer": "George Washington"
+		},
+		{
+		  "question": "In which year did World War II end?",
+		  "options": ["1945", "1939", "1950"],
+		  "answer": "1945"
+		},
+		{
+		  "question": "The pyramids of Egypt were primarily built as?",
+		  "options": ["Tombs", "Palaces", "Temples"],
+		  "answer": "Tombs"
+		}
+	  ]
+	}
+  ]
+  
