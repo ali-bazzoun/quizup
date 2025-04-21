@@ -1,0 +1,30 @@
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--neutral-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid var(--neutral-medium-gray);
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: var(--neutral-light-gray);
+  font-weight: bold;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: var(--neutral-light-gray);
+}

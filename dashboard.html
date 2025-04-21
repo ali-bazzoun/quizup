@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Dashboard - QuizUp">
+  <title>Admin Dashboard - QuizUp</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">QuizUp Admin Dashboard</h1>
+      <nav class="header-actions">
+        <button id="logout-btn" class="logout-btn" aria-label="Logout">Logout</button>
+      </nav>
+    </div>
+  </header>
+  <main class="dashboard-container">
+    <h2>Registered Users</h2>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Scores</th>
+        </tr>
+      </thead>
+      <tbody id="user-table-body">
+        <!-- User data will be dynamically loaded here -->
+      </tbody>
+    </table>
+  </main>
+  <script src="js/scripts.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

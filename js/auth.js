@@ -38,7 +38,7 @@ signupForm.addEventListener('submit', (e) => {
   const newUser = new User(email, password);
   window.usersList.push(newUser);
 
-  signupData = { email, password };
+  localStorage.setItem('usersList', JSON.stringify(window.usersList));
 
   console.log('User added to users list:', newUser);
   console.log('Updated users list:', window.usersList);
@@ -52,6 +52,17 @@ loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-password').value;
+
+  if (email === 'admin@quizup.com' && password === '123') {
+    alert('Welcome, Admin!');
+    const adminUser = { email, role: 'admin' };
+
+    window.currentUser = adminUser;
+    localStorage.setItem('currentUser', JSON.stringify(adminUser));
+    console.log('Admin signed in:', adminUser);
+    window.location.href = 'dashboard.html';
+    return;
+  }
 
   const user = window.usersList.find(
     (user) => user.email === email && user.password === password

@@ -37,6 +37,7 @@ async function loadQuiz() {
 
   document.getElementById("submit-quiz").addEventListener("click", function () {
     let score = 0;
+
     quiz.questions.forEach((q, i) => {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
       if (selected && selected.value === q.answer) {
@@ -46,6 +47,16 @@ async function loadQuiz() {
 
     if (window.currentUser) {
       window.currentUser.updateScore(score);
+
+      const usersList = JSON.parse(localStorage.getItem("usersList")) || [];
+      const userIndex = usersList.findIndex(user => user.email === window.currentUser.email);
+      if (userIndex !== -1) {
+        usersList[userIndex].scores = window.currentUser.scores;
+        localStorage.setItem("usersList", JSON.stringify(usersList));
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(window.currentUser));
+
       console.log(`Scores for ${window.currentUser.email}:`, window.currentUser.scores);
     } else {
       console.warn("No user is logged in.");
