@@ -1,4 +1,3 @@
-
 :root {
 	--primary-color: #0A2342;
 	--secondary-blue: #007BFF;
@@ -7,7 +6,47 @@
 	--neutral-white: #FFFFFF;
 	--neutral-light-gray: #F8F9FA;
 	--neutral-dark-gray: #6C757D;
-	--background-color: var(var(--primary-color));
+	--background-color: var(--primary-color);
 	--primary-font: 'Roboto', sans-serif;
-	--secondary-font: 'Montserrat', sans-serif
+	--secondary-font: 'Montserrat', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	font-family: var(--primary-font);
+	background-color: var(--background-color);
+	color: var(--neutral-white);
+	line-height: 1.6;
+}
+
+.site-header {
+	height: 70px;
+	padding: 0 20px;
+	border-bottom: 2px solid var(--secondary-green);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: var(--secondary-font);
+}
+
+.language-selector {
+	display: flex;
+	align-items: center;
+	color: var(--neutral-white);
+	cursor: pointer;
+	font-size: 20px;
+}
+
+main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
