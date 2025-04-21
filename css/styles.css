@@ -72,33 +72,44 @@ textarea:focus {
 }
 
 .site-header {
-    height: 70px;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--secondary-color);
+    background-color: var(--neutral-white);
+    border-bottom: 1px solid var(--neutral-medium-gray);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.logo {
     font-family: var(--secondary-font);
-    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 1.75rem;
+    font-weight: 700;
     color: var(--primary-color);
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
-.site-header h1 {
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-.language-selector {
+.header-actions {
     display: flex;
+    gap: 1rem;
     align-items: center;
-    color: var(--primary-color);
-    cursor: pointer;
-    font-size: 1.2rem;
 }
 
-.language-selector i {
-    margin-left: 8px;
+.language-btn {
+    background: transparent;
+    border: none;
+    color: #2D3748;
+    font-size: 1.25rem;
+}
+
+.language-btn:hover {
+    color: #1A202C;
 }
