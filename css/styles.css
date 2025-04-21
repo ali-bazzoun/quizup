@@ -1,0 +1,13 @@
+
+:root {
+	--primary-color: #0A2342;
+	--secondary-blue: #007BFF;
+	--secondary-green: #28A745;
+	--secondary-orange: #FFC107;
+	--neutral-white: #FFFFFF;
+	--neutral-light-gray: #F8F9FA;
+	--neutral-dark-gray: #6C757D;
+	--background-color: var(var(--primary-color));
+	--primary-font: 'Roboto', sans-serif;
+	--secondary-font: 'Montserrat', sans-serif
+}
