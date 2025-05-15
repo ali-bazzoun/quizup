@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentUser = getCurrentUser();
   if (!currentUser || currentUser.role !== 'admin') {
     alert("Access denied. Admins only.");
-    window.location.href = "auth.html";
+    window.location.href = "/auth/auth.html";
     return;
   }
 

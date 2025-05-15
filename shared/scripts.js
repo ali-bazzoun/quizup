@@ -1,14 +1,14 @@
 class User {
-	constructor(email, password) {
-	  this.email = email;
-	  this.password = password;
-	  this.scores = [];
+	constructor(data) {
+		this.email = data.email;
+		this.password = data.password;
+		this.scores = Array.isArray(data.scores) ? data.scores : [];
 	}
-  
+
 	updateScore(newScore) {
-	  this.scores.push(newScore);
+		this.scores.push(newScore);
 	}
-  }
+}
   
   function getCurrentUser() {
 	return JSON.parse(localStorage.getItem("currentUser"));
@@ -28,5 +28,5 @@ class User {
   
   
   if (document.title === 'QuizUp - Redirecting') {
-	window.location.href = 'auth.html';
+	window.location.href = '/auth/auth.html';
   }

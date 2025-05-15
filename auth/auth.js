@@ -24,50 +24,73 @@ toggleToSignin.addEventListener('click', (e) => {
   signinToggleText.classList.remove('hidden');
 });
 
-signupForm.addEventListener('submit', (e) => {
+signupForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-password').value;
 
-  const usersList = getUsersList();
+  try {
+    const response = await fetch('http://localhost:8000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-  const existingUser = usersList.find((user) => user.email === email);
-  if (existingUser) {
-    alert('User already exists. Please sign in.');
-    return;
+    const result = await response.json();
+
+    if (!response.ok) {
+      alert(result.message || 'Registration failed. Please try again.');
+      return;
+    }
+
+    alert('Signup successful! You can now sign in.');
+    toggleToSignin.click();
+  } catch (error) {
+    console.error('Error during signup:', error);
+    alert('Something went wrong. Please try again later.');
   }
-
-  const newUser = new User(email, password);
-  usersList.push(newUser);
-  setUsersList(usersList);
-
-  alert('Signup successful! You can now sign in.');
-  toggleToSignin.click();
 });
 
-loginForm.addEventListener('submit', (e) => {
+
+loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-password').value;
 
   if (email === 'admin@quizup.com' && password === '123') {
     const adminUser = { email, role: 'admin' };
     setCurrentUser(adminUser);
-    window.location.href = 'dashboard.html';
+    window.location.href = '/dashboard/dashboard.html';
     return;
   }
 
-  const usersList = getUsersList();
-  const user = usersList.find(
-    user => user.email === email && user.password === password
-  );
+  try {
+    const response = await fetch('http://localhost:8000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (!user) {
-    alert('Invalid email or password. Please try again.');
-    return;
+    const result = await response.json();
+
+    if (!result.status === 'success') {
+      alert(result.message || 'Login failed. Please try again.');
+      return;
+    }
+
+    const loggedInUser = new User(result.data.user);
+    setCurrentUser(loggedInUser);
+
+    alert(`Welcome back, ${loggedInUser.email}!`);
+    window.location.href = '/home/home.html';
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Something went wrong. Please try again later.');
   }
-
-  setCurrentUser(user);
-  alert(`Welcome back, ${user.email}!`);
-  window.location.href = 'home.html';
 });
