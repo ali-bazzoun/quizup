@@ -1,69 +1,71 @@
 async function loadQuiz() {
   const params = new URLSearchParams(window.location.search);
-  const quizId = parseInt(params.get("id"));
+  const quizId = params.get("quiz_id");
+  const quizContainer = document.querySelector(".quiz-container");
+  const quizContent = document.getElementById("quiz-content");
 
-  const res = await fetch("data/quizzes.json");
-  const quizzes = await res.json();
-  const quiz = quizzes.find(q => q.id === quizId);
-
-  if (!quiz) {
-    document.querySelector(".quiz-container").innerHTML = "<p>Quiz not found.</p>";
+  if (!quizId) {
+    quizContainer.innerHTML = "<p>Quiz ID not specified.</p>";
     return;
   }
 
-  document.getElementById("quiz-title").textContent = quiz.title;
-  document.getElementById("quiz-description").textContent = `This quiz has ${quiz.questions.length} questions.`;
+  try {
+    const response = await fetch(`http://localhost:8000/api/quiz/${quizId}`);
+    const result = await response.json();
 
-  const quizContent = document.getElementById("quiz-content");
-  quiz.questions.forEach((q, i) => {
-    const questionBlock = document.createElement("div");
-    questionBlock.classList.add("question-block");
-
-    questionBlock.innerHTML = `
-      <p>${i + 1}. ${q.question}</p>
-      ${q.options
-        .map(
-          option => `
-        <label>
-          <input type="radio" name="q${i}" value="${option}" required>
-          ${option}
-        </label>`
-        )
-        .join("")}
-    `;
-
-    quizContent.appendChild(questionBlock);
-  });
-
-  document.getElementById("submit-quiz").addEventListener("click", function () {
-    let score = 0;
-    quiz.questions.forEach((q, i) => {
-      const selected = document.querySelector(`input[name="q${i}"]:checked`);
-      if (selected && selected.value === q.answer) {
-        score++;
-      }
-    });
-
-    const currentUser = getCurrentUser();
-    if (currentUser) {
-      currentUser.scores = currentUser.scores || [];
-      currentUser.scores.push(score);
-      setCurrentUser(currentUser);
-
-      const usersList = getUsersList();
-      const index = usersList.findIndex(user => user.email === currentUser.email);
-      if (index !== -1) {
-        usersList[index].scores = currentUser.scores;
-        setUsersList(usersList);
-      }
-    } else {
-      console.warn("No user is logged in.");
+    if (!result.data || !Array.isArray(result.data.quiz.questions)) {
+      quizContainer.innerHTML = "<p>Quiz not found or is invalid.</p>";
+      return;
     }
 
-    const scoreElement = document.getElementById("quiz-score");
-    scoreElement.textContent = `Your score: ${score}/${quiz.questions.length}`;
-    scoreElement.classList.remove("hidden");
-  });
+    const quiz = result.data.quiz;
+
+    document.getElementById("quiz-title").textContent = quiz.title;
+    document.getElementById("quiz-description").textContent =
+      `This quiz has ${quiz.questions.length} questions.`;
+
+    quiz.questions.forEach((q, i) => {
+      const questionBlock = document.createElement("div");
+      questionBlock.classList.add("question-block");
+
+      questionBlock.innerHTML = `
+        <p>${i + 1}. ${q.text}</p>
+        ${q.options
+          .map(
+            (opt) => `
+            <label>
+              <input type="radio" name="q${i}" value="${opt.text}" required />
+              ${opt.text}
+            </label>`
+          )
+          .join("")}
+      `;
+
+      quizContent.appendChild(questionBlock);
+    });
+
+    document.getElementById("submit-quiz").addEventListener("click", () => {
+      let score = 0;
+
+      quiz.questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const correctOption = q.options.find(opt => opt.is_correct);
+        if (selected && selected.value === correctOption.text) {
+          score++;
+        }
+      });
+
+      const scoreElement = document.getElementById("quiz-score");
+      scoreElement.textContent = `Your score: ${score}/${quiz.questions.length}`;
+      scoreElement.classList.remove("hidden");
+    });
+
+  } catch (error) {
+    console.error("Failed to load quiz:", error);
+    quizContainer.innerHTML = "<p>Failed to load quiz data.</p>";
+  }
 }
 
 window.onload = loadQuiz;
+
+
