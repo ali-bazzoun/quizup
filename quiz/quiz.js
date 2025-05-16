@@ -67,5 +67,3 @@ async function loadQuiz() {
 }
 
 window.onload = loadQuiz;
-
-
